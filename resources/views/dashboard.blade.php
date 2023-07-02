@@ -116,6 +116,7 @@
                     </div>
                 </li>
 
+
                 <!-- Messages Dropdown Menu -->
                 {{-- <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
@@ -517,6 +518,31 @@
                             </ul>
                         </li>
                         <li class="nav-header">Users</li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-cog  nav-icon"></i>
+
+                                <p>
+                                    Setting & Privacy
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('profile.edit') }}" class="nav-link">
+                                        <i class="fas fa-user-circle nav-icon"></i>
+                                        <p>Profile</p>
+                                    </a>
+                                </li>
+
+                                {{-- <li class="nav-item">
+                                    <a href="{{ route('register') }}" class="nav-link">
+                                        <i class="fas fa-user-check nav-icon"></i>
+                                        <p>Register</p>
+                                    </a>
+                                </li> --}}
+                        </li>
+
                         {{-- 
                         <li class="nav-item">
                             <a href="pages/calendar.html" class="nav-link">
@@ -931,9 +957,6 @@
         <footer class="main-footer">
             <strong>Copyright &copy; 2014-2023
                 All rights reserved.
-                <div class="float-right d-none d-sm-inline-block">
-                    <b>Version</b> 3.2.0
-                </div>
         </footer>
 
         <!-- Control Sidebar -->
