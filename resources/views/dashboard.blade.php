@@ -24,7 +24,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard | @yield('title')</title>
+    <title>Dashboard @yield('title')</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -50,6 +50,10 @@
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('/admins/plugins/summernote/summernote-bs4.min.css') }}">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"
+        integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     {{-- Style --}}
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,600;1,700&display=swap');
@@ -59,6 +63,7 @@
         }
 
         .navbg {
+            background: #051e34;
             background-image: url("{{ asset('img/nav_bg.png') }}");
             background-repeat: no-repeat;
             background-position: center;
@@ -84,7 +89,7 @@
                             class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">@yield('title')</a>
+                    <a class="nav-link">@yield('title')</a>
                 </li>
                 {{-- <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
@@ -310,15 +315,15 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="/products/create" class="nav-link">
                                         <i class="fas fa-plus nav-icon"></i>
                                         <p>Create</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/admin/articles" class="nav-link">
+                                    <a href="/products" class="nav-link">
                                         <i class="fas fa-list nav-icon"></i>
-                                        <p>Manage</p>
+                                        <p>Product list</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -361,26 +366,27 @@
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-chart-pie"></i>
+                                <i class="fas fa-filter nav-icon"></i>
                                 <p>
-                                    Charts
+                                    Categories
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="pages/charts/chartjs.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>ChartJS</p>
+                                    <a href="/categories/create" class="nav-link">
+                                        <i class="fas fa-plus nav-icon"></i>
+
+                                        <p>Create</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/charts/flot.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Flot</p>
+                                    <a href="/categories" class="nav-link">
+                                        <i class="fas fa-list nav-icon"></i>
+                                        <p>Category list</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                {{-- <li class="nav-item">
                                     <a href="pages/charts/inline.html" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Inline</p>
@@ -391,9 +397,47 @@
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>uPlot</p>
                                     </a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-store nav-icon"></i>
+                                <p>
+                                    Suppliers
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="fas fa-plus nav-icon"></i>
+
+                                        <p>Create</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">
+                                        <i class="fas fa-list nav-icon"></i>
+                                        <p>Suppliers list</p>
+                                    </a>
+                                </li>
+                                {{-- <li class="nav-item">
+                                    <a href="pages/charts/inline.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Inline</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="pages/charts/uplot.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>uPlot</p>
+                                    </a>
+                                </li> --}}
+                            </ul>
+                        </li>
+
+
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-tree"></i>
@@ -534,13 +578,15 @@
                                         <p>Profile</p>
                                     </a>
                                 </li>
-
-                                {{-- <li class="nav-item">
-                                    <a href="{{ route('register') }}" class="nav-link">
-                                        <i class="fas fa-user-check nav-icon"></i>
-                                        <p>Register</p>
+                            </ul>
+                            {{-- <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('users.index') }}" class="nav-link">
+                                        <i class="fas fa-user-circle nav-icon"></i>
+                                        <p>Users</p>
                                     </a>
-                                </li> --}}
+                                </li>
+                            </ul> --}}
                         </li>
 
                         {{-- 
@@ -955,7 +1001,7 @@
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
-            <strong>Copyright &copy; 2014-2023
+            <strong>Developed by <a href="https://web.facebook.com/justna.privatee">Sothatna</a> team &copy; 2016-2026
                 All rights reserved.
         </footer>
 
@@ -1001,6 +1047,8 @@
     {{-- <script src="{{ asset('/admins/dist/js/demo.js') }}"></script> --}}
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ asset('/admins/dist/js/pages/dashboard.js') }}"></script>
+
+    @stack('scripts')
 
 </body>
 
