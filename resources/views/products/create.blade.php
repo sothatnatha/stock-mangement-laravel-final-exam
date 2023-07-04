@@ -4,48 +4,77 @@
 @section('right')
     <div class="container-fluid">
         <br>
-        <form action="/products/create" method="POST">
+        <form action="/products" method="POST">
+            @csrf
+            {{ method_field('post') }}
+
             <div class="mb-3">
+                @if (session('message'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('message') }}
+                    </div>
+                @endif
+
                 <label for="exampleFormControlInput1" class="form-label">Product name</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="eg: Tesla model-s">
+                <input type="text" class="form-control" name="name" id="exampleFormControlInput1"
+                    placeholder="eg: Tesla model-s" value="{{ old('name') }}">
+
+                @error('name')
+                    <p style="color: red; font-size:14px;"> {{ $message }}</p>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Describe your product..."></textarea>
+                <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"
+                    placeholder="Describe your product...">{{ old('description') }}</textarea>
+                @error('description')
+                    <p style="color: red; font-size:14px;"> {{ $message }}</p>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Price</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input type="number" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                    <input type="number" name="price" class="form-control"
+                        aria-label="Dollar amount (with dot and two decimal places)" value="{{ old('price') }}">
                 </div>
+                @error('price')
+                    <p style="color: red; font-size:14px;"> {{ $message }}</p>
+                @enderror
             </div>
 
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Quantity</label>
-                <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Quantity">
-
+                <input type="number" class="form-control" name="qty" id="exampleFormControlInput1"
+                    placeholder="quantity" value="{{ old('qty') }}">
+                @error('qty')
+                    <p style="color: red; font-size:14px;"> {{ $message }}</p>
+                @enderror
             </div>
 
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Categories</label>
-                <select class="form-select form-control" aria-label="Default select example">
+                <select class="form-select form-control" name="supplier_id" aria-label="Default select example">
                     <option selected>Choose Supplier</option>
-                    <option value="s1">Supplier 1</option>
-                    <option value="s2">Supplier 2</option>
-                </select>
 
+                    @foreach ($suppliers as $supplier)
+                        <option value="{{ $supplier->id }}">{{ $supplier->supplier_name }}</option>
+                    @endforeach
+                </select>
             </div>
 
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Categories</label>
-                <select class="form-select form-control" aria-label="Default select example">
+                <select class="form-select form-control" name="category_id" aria-label="Default select example">
                     <option selected>Choose Categories</option>
-                    <option value="c1">Categories 1</option>
-                    <option value="c2">Categories 2</option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                    @endforeach
+
                 </select>
+
             </div>
-            <input type="submit" value="Submit" class="btn btn-primary">
+            <input type="submit" value="Submit" class="btn btn-primary mb-4 btn-sm">
 
         </form>
     </div>

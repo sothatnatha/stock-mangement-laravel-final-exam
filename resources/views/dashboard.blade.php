@@ -410,14 +410,14 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="/suppliers/create" class="nav-link">
                                         <i class="fas fa-plus nav-icon"></i>
 
                                         <p>Create</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">
+                                    <a href="/suppliers" class="nav-link">
                                         <i class="fas fa-list nav-icon"></i>
                                         <p>Suppliers list</p>
                                     </a>
@@ -1047,8 +1047,6 @@
     {{-- <script src="{{ asset('/admins/dist/js/demo.js') }}"></script> --}}
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ asset('/admins/dist/js/pages/dashboard.js') }}"></script>
-
-    @stack('scripts')
 
 </body>
 

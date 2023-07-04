@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
 class SupplierController extends Controller
@@ -11,7 +12,8 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        //
+        $suppliers = Supplier::where('id', '>', 0)->get();
+        return view('suppliers.index', compact('suppliers'));
     }
 
     /**
@@ -20,6 +22,8 @@ class SupplierController extends Controller
     public function create()
     {
         //
+        return view('suppliers.create');
+
     }
 
     /**
@@ -27,7 +31,18 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $request->validate([
+            'supplier_name' => 'required|min:8|max:25|unique:suppliers',
+            'contact_info' => 'required',
+            'address' => 'required|min:8|max:25',
+        ]);
+
+        // dd($request->all());
+
+        Supplier::create($request->all());
+
+        return redirect('suppliers')->with('message', 'Created!');
     }
 
     /**
@@ -43,7 +58,9 @@ class SupplierController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $supplier = Supplier::find($id);
+
+        return view('suppliers.edit', compact('supplier'));
     }
 
     /**
@@ -51,7 +68,22 @@ class SupplierController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+          
+        $request->validate([
+            'name' => 'required|min:8|max:25|',
+            'contact_info' => 'required',
+            'address' => 'required|min:8|max:25',
+        ]);
+
+        // dd($request->all());
+
+        Supplier::find($id)->update([
+            'name' => $request->input('name'),
+            'contact_info' => $request->input('contact_info'),
+            'address' => $request->input('address'),
+        ]);
+
+        return redirect('suppliers')->with('message', 'Updated!');
     }
 
     /**
@@ -59,6 +91,8 @@ class SupplierController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Supplier::find($id)->delete();
+        return redirect('suppliers')->with('message', 'Deleted!');
+
     }
 }

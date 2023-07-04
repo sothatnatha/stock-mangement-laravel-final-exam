@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\CategoriesDataTable;
+use Illuminate\Support\Facades\DB;
+use Pest\Support\View;
 use \Yajra\DataTables\Facades\DataTables;
 use App\Models\Category;
 use App\Models\CategoryModel;
@@ -15,8 +17,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('categories.index');
+        $categories = Category::where('id', '>', '0')->get();
 
+        return view('categories.index', ['categories'=> $categories]);
     }
 
     /**
@@ -60,7 +63,8 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $category = Category::find($id);
+        return view('categories.edit', compact('category'));
     }
 
     /**
@@ -68,7 +72,20 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // dd($request->all());
+        $request->validate([
+            'category_name' => 'required|string|min:4|max:15|'
+        ]);
+        
+        Category::find($id)->update([
+                'category_name' => $request->input('category_name'),
+        ]);
+        return redirect()
+            ->back()
+            ->with(
+                'message',
+                'Update successfully!'
+            );
     }
 
     /**
@@ -77,5 +94,8 @@ class CategoryController extends Controller
     public function destroy(string $id)
     {
         //
+        Category::find($id)->delete();
+        return redirect('/categories')
+            ->with('message', 'Deleted successfully!');
     }
 }

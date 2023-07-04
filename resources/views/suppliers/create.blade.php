@@ -1,50 +1,40 @@
 @extends('dashboard')
-@section('title', 'Product | Create')
+@section('title', 'Suppliers | Create')
 
 @section('right')
     <div class="container-fluid">
         <br>
-        <form action="/products/create" method="POST">
+        <form action="/suppliers" method="POST">
+            @csrf
+            {{ method_field('POST') }}
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Product name</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="eg: Tesla model-s">
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Describe your product..."></textarea>
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Price</label>
-                <div class="input-group">
-                    <span class="input-group-text">$</span>
-                    <input type="number" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
-                </div>
+                <label for="exampleFormControlInput1" class="form-label">Supplier name</label>
+                <input type="text" class="form-control" name="supplier_name" id="exampleFormControlInput1"
+                    placeholder="eg: apple store" value="{{ old('suplier_name') }}">
+
+                @error('supplier_name')
+                    <p style="color: red; font-size:14px;"> {{ $message }}</p>
+                @enderror
             </div>
 
             <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Quantity</label>
-                <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Quantity">
+                <label for="exampleFormControlInput1" class="form-label">Contact info</label>
+                <input type="text" class="form-control" name="contact_info" id="exampleFormControlInput1"
+                    placeholder="eg: telegram username or phone number" value="{{ old('contact_info') }}">
 
+                @error('contact_info')
+                    <p style="color: red; font-size:14px;"> {{ $message }}</p>
+                @enderror
             </div>
-
             <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Categories</label>
-                <select class="form-select form-control" aria-label="Default select example">
-                    <option selected>Choose Supplier</option>
-                    <option value="s1">Supplier 1</option>
-                    <option value="s2">Supplier 2</option>
-                </select>
-
+                <label for="exampleFormControlInput1" class="form-label">Address</label>
+                <input type="text" class="form-control" name="address" id="exampleFormControlInput1"
+                    placeholder="eg: street 261, phom penh" value="{{ old('address') }}">
+                @error('address')
+                    <p style="color: red; font-size:14px;"> {{ $message }}</p>
+                @enderror
             </div>
 
-            <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Categories</label>
-                <select class="form-select form-control" aria-label="Default select example">
-                    <option selected>Choose Categories</option>
-                    <option value="c1">Categories 1</option>
-                    <option value="c2">Categories 2</option>
-                </select>
-            </div>
             <input type="submit" value="Submit" class="btn btn-primary">
 
         </form>
