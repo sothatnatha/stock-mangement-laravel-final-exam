@@ -3,7 +3,11 @@
 
 @section('right')
     <br><a href="/products/create" class=" btn btn-primary btn-sm mb-4"> New <i class="fas fa-plus nav-icon"></i></a>
-
+    @if (session('message'))
+        <div class="alert alert-success" role="alert">
+            {{ session('message') }}
+        </div>
+    @endif
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
@@ -48,7 +52,7 @@
                                 $ {{ $p->price }}
                             </td>
                             <td>
-                                {{ $p->qty }} units
+                                {{ $p->qty }}
                             </td>
                             <td>
                                 {{ $p->supplier_name }}
@@ -59,13 +63,49 @@
                             <td>{{ date('D d-M-Y', strtotime($p->created_at)) }}</td>
                             <td>
                                 <div id="action-list" style="display: flex; justify-content: space-evenly;">
+
                                     <a href="/products/{{ $p->id }}/edit" class="btn btn-warning btn-sm"">Edit</a>
-                                    <form action="/products/{{ $p->id }}" method="post">
-                                        @csrf
-                                        {{ method_field('delete') }}
-                                        <input type="submit" class="btn btn-danger btn-sm" value="Delete" />
-                                    </form>
+
+                                    <button class="btn btn-danger btn-sm" data-toggle="modal"
+                                        data-target="#deleteModal{{ $p->id }}">
+                                        Delete
+                                    </button>
+
+                                    <!-- Delete Modal -->
+                                    <div class="modal fade" id="deleteModal{{ $p->id }}" tabindex="-1" role="dialog"
+                                        aria-labelledby="deleteModalLabel{{ $p->id }}" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteModalLabel{{ $p->id }}">Delete
+                                                        Product</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Are you sure you want to delete the product
+                                                        <strong>{{ $p->pname }}</strong>?
+                                                    </p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary btn-sm"
+                                                        data-dismiss="modal">Cancel</button>
+
+                                                    <form action="/products/{{ $p->id }}" method="POST"
+                                                        style="display: inline;">
+                                                        @csrf
+                                                        {{ method_field('delete') }}
+                                                        <input type="submit" class="btn btn-danger btn-sm" />
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
+
                             </td>
                         </tr>
                     @endforeach
@@ -75,6 +115,9 @@
             @endunless
 
         </div>
+
+
+
 
     </div>
 @endsection

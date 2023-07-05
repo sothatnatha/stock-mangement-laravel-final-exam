@@ -15,14 +15,6 @@ class ProductController extends Controller
      */
     public function index()
     {
- 
-        // $products = DB::table('products')
-        //     ->join('suppliers', 'products.supplier_id', '=', 'suppliers.id')
-        //     ->join('categories', 'products.category_id', '=', 'categories.id')
-        //     ->select('products.id', 'products.name','products.description', 'products.price', 'products.qty', 'products.supplier_id', 'products.category_id', 'products.created_at')
-        //     ->get();
-
-        // $raw_sql = "SELECT p.id, p.name, p.description, p.price, p.qty, s.name, c.category_name, p.created_at FROM `products` p JOIN `categories` c JOIN `suppliers` s WHERE p.id > 0 GROUP BY p.id;";
         $products = DB::table('products as p')
             ->join('categories as c', 'p.category_id', '=', 'c.id')
             ->join('suppliers as s', 'p.supplier_id', '=', 's.id')
@@ -54,10 +46,10 @@ class ProductController extends Controller
 
         // dd( $request->all());
         $request->validate([
-            'name' => 'required|min:5|max:25|unique:products',
+            'pname' => 'required|min:5|max:25|unique:products',
             'description' => 'required|min:10|max:50',
-            'price' => 'required|numeric',
-            'qty' => 'required|numeric',
+            'price' => 'required|',
+            'qty' => 'required|',
         ]);
 
         Product::create($request->all());
@@ -82,6 +74,11 @@ class ProductController extends Controller
     public function edit(string $id)
     {
         //
+        $suppliers = Supplier::where('id', '>', 0)->get();
+        $categories = Category::where('id', '>', 0)->get();
+        $product = Product::find($id);
+        
+        return view('products.edit', compact('product', 'suppliers', 'categories'));
     }
 
     /**
@@ -89,7 +86,25 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'pname' => 'required|min:5|max:25',
+            'description' => 'required|min:10|max:50',
+            'price' => 'required|',
+            'qty' => 'required|',
+        ]);
+
+        Product::find($id)->update([
+            'pname' => $request->input('pname'),
+            'description' => $request->input('description'),
+            'price' => $request->input('price'),
+            'qty' => $request->input('qty'),
+            'supplier_id' => $request->input('supplier_id'),
+            'category_id' => $request->input('category_id'),
+        ]);
+
+        return redirect('products')->with('message', 'Updated!');
+
+
     }
 
     /**
@@ -97,6 +112,7 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Product::find($id)->delete();
+        return redirect('products')->with('message', 'Deleted!');
     }
 }

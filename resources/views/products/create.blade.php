@@ -16,10 +16,10 @@
                 @endif
 
                 <label for="exampleFormControlInput1" class="form-label">Product name</label>
-                <input type="text" class="form-control" name="name" id="exampleFormControlInput1"
-                    placeholder="eg: Tesla model-s" value="{{ old('name') }}">
+                <input type="text" class="form-control" name="pname" id="exampleFormControlInput1"
+                    placeholder="eg: Tesla model-s" value="{{ old('pname') }}">
 
-                @error('name')
+                @error('pname')
                     <p style="color: red; font-size:14px;"> {{ $message }}</p>
                 @enderror
             </div>
