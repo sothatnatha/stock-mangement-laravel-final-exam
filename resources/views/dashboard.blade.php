@@ -465,6 +465,31 @@
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
+                                <i class="fas fa-warehouse nav-icon"></i>
+                                <p>
+                                    Warehouses
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/warehouses/create" class="nav-link">
+                                        <i class="fas fa-plus nav-icon"></i>
+                                        <p>Create</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/warehouses" class="nav-link">
+                                        <i class="fas fa-list nav-icon"></i>
+                                        <p>Warehouse list</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        {{-- 
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-edit"></i>
                                 <p>
                                     Forms
@@ -526,7 +551,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> --}}
                         <li class="nav-header">Users</li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
