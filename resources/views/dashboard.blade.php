@@ -101,7 +101,7 @@
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <!-- Navbar Search -->
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" data-widget="navbar-search" href="#" role="button">
                         <i class="fas fa-search"></i>
                     </a>
@@ -121,7 +121,7 @@
                             </div>
                         </form>
                     </div>
-                </li>
+                </li> --}}
 
 
                 <!-- Messages Dropdown Menu -->
@@ -442,59 +442,23 @@
 
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-tree"></i>
+                                <i class="fas fa-table nav-icon"></i>
                                 <p>
-                                    UI Elements
+                                    Stock
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="pages/UI/general.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>General</p>
+                                    <a href="/stocks/create" class="nav-link">
+                                        <i class="fas fa-plus nav-icon"></i>
+                                        <p>Create</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/UI/icons.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Icons</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/UI/buttons.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Buttons</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/UI/sliders.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Sliders</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/UI/modals.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Modals & Alerts</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/UI/navbar.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Navbar & Tabs</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/UI/timeline.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Timeline</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/UI/ribbons.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Ribbons</p>
+                                    <a href="/stocks" class="nav-link">
+                                        <i class="fas fa-list nav-icon"></i>
+                                        <p>Stock list</p>
                                     </a>
                                 </li>
                             </ul>

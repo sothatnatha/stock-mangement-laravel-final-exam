@@ -1,103 +1,92 @@
 @extends('dashboard')
-@section('title', 'Product | List')
+@section('title', 'Stock | List')
 
 @section('right')
-    <br><a href="/products/create" class=" btn btn-primary btn-sm mb-4"> New <i class="fas fa-plus nav-icon"></i></a>
-
     <div class="container-fluid">
-        @if (session('message'))
-            <div class="alert alert-success" role="alert">
-                {{ session('message') }}
-            </div>
-        @endif
-        <div class="card">
+        <br><a href="/stocks/create" class=" btn btn-primary btn-sm mb-4"> New <i class="fas fa-plus nav-icon"></i></a>
 
-            @unless (count($products) == 0)
+        <div class="card p-4">
+            @if (session('message'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('message') }}
+                </div>
+            @endif
+            @unless (count($stocks) == 0)
 
                 <table border="1" class="table table-bordered">
                     <tr>
                         <th>No</th>
                         <th>Product</th>
-                        <th>Description</th>
-                        <th>Price</th>
                         <th>Qty</th>
-                        <th>Supplier</th>
-                        <th>Category</th>
+                        <th>Location</th>
                         <th>Created</th>
-
+                        <th>Updatd</th>
                         <th>Action</th>
                     </tr>
-                    @foreach ($products as $p)
+                    @foreach ($stocks as $st)
                         <tr>
-                            {{-- checkbox row for multi delete purpose --}}
-                            {{-- <td>
-                            <input type="checkbox" name="chk_ids[]" id="chk_ids[]" value="" />
-                        </td> --}}
-                            {{-- end checkbox row for multi delete purpose --}}
-
                             <td>
                                 <b>
                                     <p class="">
-                                        {{ $p->id }}
+                                        {{ $st->id }}
                                     </p>
                                 </b>
                             </td>
                             <td>
-                                {{ $p->pname }}
+                                {{ $st->pname }}
                             </td>
                             <td>
-                                {{ $p->description }}
+                                {{ $st->qty }}
                             </td>
                             <td>
-                                $ {{ $p->price }}
+                                {{ $st->location }}
                             </td>
-                            <td>
-                                {{ $p->qty }}
-                            </td>
-                            <td>
-                                {{ $p->supplier_name }}
-                            </td>
-                            <td>
-                                {{ $p->category_name }}
-                            </td>
-                            <td>{{ date('D d-M-Y', strtotime($p->created_at)) }}</td>
+
+                            <td>{{ date('D d-M-Y', strtotime($st->created_at)) }}</td>
+                            <td>{{ date('D d-M-Y', strtotime($st->updated_at)) }}</td>
                             <td>
                                 <div id="action-list" style="display: flex; justify-content: space-evenly;">
 
-                                    <a href="/products/{{ $p->id }}/edit" class="btn btn-warning btn-sm"">Edit</a>
+                                    <a href="/stocks/{{ $st->id }}/edit" class="btn btn-warning btn-sm"">Edit</a>
 
                                     <button class="btn btn-danger btn-sm" data-toggle="modal"
-                                        data-target="#deleteModal{{ $p->id }}">
+                                        data-target="#deleteModal{{ $st->id }}">
                                         Delete
                                     </button>
 
                                     <!-- Delete Modal -->
-                                    <div class="modal fade" id="deleteModal{{ $p->id }}" tabindex="-1" role="dialog"
-                                        aria-labelledby="deleteModalLabel{{ $p->id }}" aria-hidden="true">
+                                    <div class="modal fade" id="deleteModal{{ $st->id }}" tabindex="-1" role="dialog"
+                                        aria-labelledby="deleteModalLabel{{ $st->id }}" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="deleteModalLabel{{ $p->id }}">Delete
-                                                        Product</h5>
+                                                    <h5 class="modal-title" id="deleteModalLabel{{ $st->id }}">
+                                                        Delete
+                                                        Stock list</h5>
                                                     <button type="button" class="close" data-dismiss="modal"
                                                         aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p>Are you sure you want to delete the product
-                                                        <strong>{{ $p->pname }}</strong>?
+                                                    <p>Are you sure you want to delete the stock list
+                                                        <strong>{{ $st->pname }}</strong>?
                                                     </p>
+                                                    <div class="description">
+                                                        <p>Product: <strong>{{ $st->pname }}</strong></p>
+                                                        <p>Qty available: <strong>{{ $st->qty }}</strong></p>
+                                                        <p>Location: <strong>{{ $st->location }}</strong></p>
+                                                    </div>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary btn-sm"
                                                         data-dismiss="modal">Cancel</button>
 
-                                                    <form action="/products/{{ $p->id }}" method="POST"
+                                                    <form action="/stocks/{{ $st->id }}" method="POST"
                                                         style="display: inline;">
                                                         @csrf
                                                         {{ method_field('delete') }}
-                                                        <input type="submit" class="btn btn-danger btn-sm" />
+                                                        <input type="submit" class="btn btn-danger btn-sm" value="Confirm" />
                                                     </form>
                                                 </div>
                                             </div>
@@ -115,9 +104,5 @@
             @endunless
 
         </div>
-
-
-
-
     </div>
 @endsection

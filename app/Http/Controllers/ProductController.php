@@ -49,7 +49,7 @@ class ProductController extends Controller
             'pname' => 'required|min:5|max:25|unique:products',
             'description' => 'required|min:10|max:50',
             'price' => 'required|',
-            'qty' => 'required|',
+            'qty' => 'required|numeric',
         ]);
 
         Product::create($request->all());

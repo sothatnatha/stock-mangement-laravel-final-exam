@@ -79,7 +79,7 @@
                 </select>
 
             </div>
-            <input type="submit" value="Update" class="btn btn-primary mb-4 btn-sm">
+            <input type="submit" value="Update" class="btn btn-warning mb-4 btn-sm">
 
         </form>
     </div>

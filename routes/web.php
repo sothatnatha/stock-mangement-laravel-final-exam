@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StockController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/products', ProductController::class);
     Route::resource('/categories', CategoryController::class);
     Route::resource('/suppliers', SupplierController::class);
+    Route::resource('/stocks', StockController::class);
+
 
 
 

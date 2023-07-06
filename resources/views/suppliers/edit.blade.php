@@ -9,10 +9,10 @@
             {{ method_field('PUT') }}
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Supplier name</label>
-                <input type="text" class="form-control" name="name" id="exampleFormControlInput1"
-                    placeholder="eg: apple store" value="{{ $supplier->name }}">
+                <input type="text" class="form-control" name="supplier_name" id="exampleFormControlInput1"
+                    placeholder="eg: apple store" value="{{ $supplier->supplier_name }}">
 
-                @error('name')
+                @error('supplier_name')
                     <p style="color: red; font-size:14px;"> {{ $message }}</p>
                 @enderror
             </div>

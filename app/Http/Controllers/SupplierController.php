@@ -35,7 +35,7 @@ class SupplierController extends Controller
         $request->validate([
             'supplier_name' => 'required|min:8|max:25|unique:suppliers',
             'contact_info' => 'required',
-            'address' => 'required|min:8|max:25',
+            'address' => 'required|min:8|max:192',
         ]);
 
         // dd($request->all());
@@ -70,15 +70,15 @@ class SupplierController extends Controller
     {
           
         $request->validate([
-            'name' => 'required|min:8|max:25|',
+            'supplier_name' => 'required|min:8|max:25|',
             'contact_info' => 'required',
-            'address' => 'required|min:8|max:25',
+            'address' => 'required|min:8|max:192',
         ]);
 
         // dd($request->all());
 
         Supplier::find($id)->update([
-            'name' => $request->input('name'),
+            'supplier_name' => $request->input('supplier_name'),
             'contact_info' => $request->input('contact_info'),
             'address' => $request->input('address'),
         ]);
