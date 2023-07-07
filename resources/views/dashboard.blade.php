@@ -486,6 +486,29 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-cart-plus nav-icon"></i>
+                                <p>
+                                    Order
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/orders/create" class="nav-link">
+                                        <i class="fas fa-plus nav-icon"></i>
+                                        <p>Create</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/orders" class="nav-link">
+                                        <i class="fas fa-list nav-icon"></i>
+                                        <p>Orders</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
                         {{-- 
                         <li class="nav-item">
@@ -1047,6 +1070,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
         integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous">
     </script>
+
 </body>
 
 </html>

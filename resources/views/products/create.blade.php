@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <br>
         <div class="card p-4">
-            <form action="/products" method="POST">
+            <form action="/products" method="POST" enctype="multipart/form-data">
                 @csrf
                 {{ method_field('post') }}
 
@@ -74,6 +74,15 @@
 
                     </select>
 
+                </div>
+
+                <div class="form-group">
+                    <label for="picture">Product Picture</label>
+                    <input type="file" name="picture" id="picture" class="form-control" required>
+
+                    @error('picture')
+                        <p style="color: red; font-size:14px;"> {{ $message }}</p>
+                    @enderror
                 </div>
                 <input type="submit" value="Submit" class="btn btn-primary mb-4 btn-sm">
 

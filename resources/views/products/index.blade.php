@@ -11,13 +11,12 @@
             </div>
         @endif
         <div class="card">
-
             @unless (count($products) == 0)
-
                 <table border="1" class="table table-bordered">
                     <tr>
                         <th>No</th>
                         <th>Product</th>
+                        <th>Picture</th>
                         <th>Description</th>
                         <th>Price</th>
                         <th>Qty</th>
@@ -45,6 +44,13 @@
                             <td>
                                 {{ $p->pname }}
                             </td>
+
+                            <td>
+                                <img src="{{ asset($p->picture) }}" alt="" width="30px">
+                                <img src="{{ asset('/logo/packages.png') }}" alt="" width="30px">
+
+                            </td>
+
                             <td>
                                 {{ $p->description }}
                             </td>
@@ -60,6 +66,7 @@
                             <td>
                                 {{ $p->category_name }}
                             </td>
+
                             <td>{{ date('D d-M-Y', strtotime($p->created_at)) }}</td>
                             <td>
                                 <div id="action-list" style="display: flex; justify-content: space-evenly;">
@@ -115,9 +122,5 @@
             @endunless
 
         </div>
-
-
-
-
     </div>
 @endsection

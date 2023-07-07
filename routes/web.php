@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StockController;
@@ -37,11 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/categories', CategoryController::class);
     Route::resource('/suppliers', SupplierController::class);
     Route::resource('/stocks', StockController::class);
-    Route::resource('/warehouses', WarehouseController::class);
-
-
-
-
+    Route::resource('/orders', OrderController::class);
 
 });
 
