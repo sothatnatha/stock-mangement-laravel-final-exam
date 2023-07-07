@@ -414,7 +414,6 @@
                                 <li class="nav-item">
                                     <a href="/suppliers/create" class="nav-link">
                                         <i class="fas fa-plus nav-icon"></i>
-
                                         <p>Create</p>
                                     </a>
                                 </li>
@@ -486,7 +485,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="fas fa-cart-plus nav-icon"></i>
                                 <p>
@@ -505,6 +504,54 @@
                                     <a href="/orders" class="nav-link">
                                         <i class="fas fa-list nav-icon"></i>
                                         <p>Orders</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li> --}}
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-cart-plus nav-icon"></i>
+                                <p>
+                                    Sale
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/sales/create" class="nav-link">
+                                        <i class="fas fa-plus nav-icon"></i>
+                                        <p>Create</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/sales" class="nav-link">
+                                        <i class="fas fa-list nav-icon"></i>
+                                        <p>Sales</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-users nav-icon"></i>
+                                <p>
+                                    Customer
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/customers/create" class="nav-link">
+                                        <i class="fas fa-plus nav-icon"></i>
+                                        <p>Create</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/customers" class="nav-link">
+                                        <i class="fas fa-list nav-icon"></i>
+                                        <p>Customers</p>
                                     </a>
                                 </li>
                             </ul>

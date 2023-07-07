@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Categories</label>
+                    <label for="exampleFormControlTextarea1" class="form-label">Supplier</label>
                     <select class="form-select form-control" name="supplier_id" aria-label="Default select example">
                         <option selected>Choose Supplier</option>
 
