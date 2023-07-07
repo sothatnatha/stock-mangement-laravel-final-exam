@@ -45,9 +45,9 @@
                                 {{ $p->pname }}
                             </td>
 
-                            <td>
-                                <img src="{{ asset($p->picture) }}" alt="" width="30px">
-                                <img src="{{ asset('/logo/packages.png') }}" alt="" width="30px">
+                            <td style="width: 50px;">
+                                <img src="storage/{{ $p->picture }}" alt="" width="50px">
+                                {{-- <img src="{{ asset('/logo/packages.png') }}" alt="" width="30px"> --}}
 
                             </td>
 

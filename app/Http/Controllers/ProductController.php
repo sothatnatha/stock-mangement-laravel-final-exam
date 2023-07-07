@@ -100,21 +100,41 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
+
+        // dd($request->all());
+
         $request->validate([
             'pname' => 'required|min:5|max:25',
             'description' => 'required|min:10|max:50',
             'price' => 'required|',
             'qty' => 'required|',
+            'picture' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        Product::find($id)->update([
-            'pname' => $request->input('pname'),
-            'description' => $request->input('description'),
-            'price' => $request->input('price'),
-            'qty' => $request->input('qty'),
-            'supplier_id' => $request->input('supplier_id'),
-            'category_id' => $request->input('category_id'),
-        ]);
+        $product = Product::findOrFail($id);
+
+        $product->pname = $request->pname;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->qty = $request->qty;
+        $product->supplier_id =  $request->supplier_id;
+        $product->category_id =  $request->category_id;
+
+        if ($request->hasFile('picture')) {
+
+            // Delete the old picture file (if it exists)
+            if ($product->picture && Storage::exists($product->picture)) {
+                Storage::delete($product->picture);
+            }
+
+            // Store the new picture
+            $newPicturePath = $request->file('picture')->store('uploaded-image');
+
+            // Update the product record with the new picture file path
+             $product->picture = $newPicturePath;
+        }
+
+        $product->save();
 
         return redirect('products')->with('message', 'Updated!');
 

@@ -78,7 +78,7 @@
 
                 <div class="form-group">
                     <label for="picture">Product Picture</label>
-                    <input type="file" name="picture" id="picture" class="form-control" required>
+                    <input type="file" name="picture" id="picture" class="form-control">
 
                     @error('picture')
                         <p style="color: red; font-size:14px;"> {{ $message }}</p>
