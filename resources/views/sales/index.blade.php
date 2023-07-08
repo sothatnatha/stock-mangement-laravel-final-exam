@@ -1,5 +1,5 @@
 @extends('dashboard')
-@section('title', 'Warehouse | List')
+@section('title', 'Sale | List')
 
 @section('right')
     <div class="container-fluid">
@@ -21,10 +21,10 @@
                 <table border="1" class="table table-bordered">
                     <tr>
                         <th>No</th>
-                        <th>Customer name</th>
-                        <th>Phone</th>
-                        <th>Shipping address</th>
-                        <th>Payment info</th>
+                        <th>Product</th>
+                        <th>Qty</th>
+                        <th>Sale date</th>
+                        <th>Customer</th>
                         <th>Created</th>
                         <th>Action</th>
                     </tr>
@@ -38,7 +38,7 @@
                                 </b>
                             </td>
                             <td>
-                                {{ $sale->product_id }}
+                                {{ $sale->pname }}
                             </td>
                             <td>
                                 {{ $sale->qty }}
@@ -48,14 +48,14 @@
                             </td>
 
                             <td>
-                                {{ $sale->customer_id }}
+                                {{ $sale->cname }}
                             </td>
 
                             <td>{{ date('D d-M-Y', strtotime($sale->created_at)) }}</td>
                             <td>
                                 <div id="action-list" style="display: flex; justify-content: space-evenly;">
 
-                                    <a href="/customers/{{ $sale->id }}/edit" class="btn btn-warning btn-sm"">Edit</a>
+                                    <a href="/sales/{{ $sale->id }}/edit" class="btn btn-warning btn-sm"">Edit</a>
 
                                     <button class="btn btn-danger btn-sm" data-toggle="modal"
                                         data-target="#deleteModal{{ $sale->id }}">

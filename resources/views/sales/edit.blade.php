@@ -1,53 +1,74 @@
 @extends('dashboard')
-@section('title', 'Customer | Edit')
+@section('title', 'Sale | Edit')
 
 @section('right')
     <div class="container-fluid">
         <br>
         <div class="card p-4">
-            <form action="/customers/{{ $customer->id }}" method="POST">
+            <form action="/sales/{{ $sale->id }}" method="POST">
                 @csrf
                 {{ method_field('put') }}
 
                 <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Customer name</label>
-                    <input type="text" class="form-control" name="cname" id="exampleFormControlInput1"
-                        placeholder="Customer name" value="{{ $customer->cname }}">
-                    @error('cname')
+                    @if (session('message'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('message') }}
+                        </div>
+                    @endif
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Select Product</label>
+                        <select class="form-select form-control" name="product_id" aria-label="Default select example">
+                            @foreach ($products as $p)
+                                @if ($p->id == $sale->product_id)
+                                    <option value="{{ $p->id }}" selected>{{ $p->pname }}</option>
+                                @else
+                                    <option value="{{ $p->id }}">{{ $p->pname }}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Quantity</label>
+                    <input type="number" placeholder="Quantity of sale" class="form-control" name="qty"
+                        id="exampleFormControlInput1" value="{{ $sale->qty }}">
+                    @error('qty')
                         <p style="color: red; font-size:14px;"> {{ $message }}</p>
                     @enderror
                 </div>
 
                 <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Phone number</label>
-                    <input type="text" class="form-control" name="phone_number" id="exampleFormControlInput1"
-                        placeholder="phone number" value="{{ $customer->phone_number }}" />
-
-                    @error('phone_number')
+                    <label for="exampleFormControlTextarea1" class="form-label">Sale date</label>
+                    <input type="datetime-local" class="form-control" name="sale_date" id="exampleFormControlInput1"
+                        value="{{ $sale->sale_date }}">
+                    @error('sale_date')
                         <p style="color: red; font-size:14px;"> {{ $message }}</p>
                     @enderror
-
                 </div>
-
                 <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Shipping address</label>
-                    <input type="text" class="form-control" name="shipping_address" id="exampleFormControlInput1"
-                        placeholder="Shipping address eg: Kampong chhnang" value="{{ $customer->shipping_address }}">
-                    @error('shipping_address')
-                        <p style="color: red; font-size:14px;"> {{ $message }}</p>
-                    @enderror
-                </div>
+                    @if (session('message'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('message') }}
+                        </div>
+                    @endif
 
-                <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Payment info</label>
-                    <input type="text" class="form-control" name="payment_method" id="exampleFormControlInput1"
-                        placeholder="Payment info..." value="{{ $customer->payment_method }}">
-                    @error('payment_method')
-                        <p style="color: red; font-size:14px;"> {{ $message }}</p>
-                    @enderror
-                </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Select Cusomter</label>
+                        <select class="form-select form-control" name="customer_id" aria-label="Default select example">
+                            @foreach ($customers as $cus)
+                                @if ($cus->id == $sale->customer_id)
+                                    <option value="{{ $cus->id }}" selected>{{ $cus->cname }}</option>
+                                @else
+                                    <option value="{{ $cus->id }}">{{ $cus->cname }}</option>
+                                @endif
+                            @endforeach
+                        </select>
 
-                <input type="submit" value="Update customer" class="btn btn-warning mb-4 btn-sm" style="float: right;">
+                    </div>
+                </div>
+                <input type="submit" value="Update sale" class="btn btn-primary mb-4 btn-sm" style="float: right;">
 
             </form>
         </div>

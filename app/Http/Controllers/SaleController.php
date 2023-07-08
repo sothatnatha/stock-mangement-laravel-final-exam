@@ -15,7 +15,10 @@ class SaleController extends Controller
      */
     public function index()
     {
-        $sales =  Sale::where('id', '>', 0)->get();
+        $sales =  Sale::select('sales.id', 'products.pname', 'sales.qty', 'sales.sale_date', 'customers.cname', 'sales.created_at')
+                ->join('products', 'sales.product_id', '=', 'products.id')
+                ->join('customers', 'sales.customer_id', '=', 'customers.id')
+                ->get();
         return view('sales.index', compact('sales'));
         
     }
@@ -25,7 +28,11 @@ class SaleController extends Controller
      */
     public function create()
     {
-        $products = Product::where('id', '>', 0)->get();
+        // query only products available in stock.
+        $products = Product::select('products.pname')
+            ->join('stocks', 'stocks.product_id', '=', 'products.id')
+            ->get();
+
         $customers = Customer::where('id', '>', 0)->get();
 
         return view('sales.create', compact('products', 'customers'));
@@ -66,7 +73,16 @@ class SaleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // query only products available in stock.
+        $products = Product::select('products.id','products.pname')
+            ->join('stocks', 'stocks.product_id', '=', 'products.id')
+            ->get();
+
+        $customers = Customer::where('id', '>', 0)->get();
+
+        $sale = Sale::find($id);
+
+        return view('sales.edit', compact('products', 'customers', 'sale'));
     }
 
     /**
@@ -74,7 +90,20 @@ class SaleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'qty' => 'required',
+            'sale_date' => 'required',
+        ]);
+
+        Sale::find($id)->update([
+            'product_id' => $request->input('product_id'),
+            'qty' => $request->input('qty'),
+            'sale_date' => $request->input('sale_date'),
+            'customer_id' => $request->input('customer_id')
+        ]);
+
+        return redirect('sales')->with('message', 'Updated');
+
     }
 
     /**
