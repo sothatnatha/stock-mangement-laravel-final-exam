@@ -8,7 +8,6 @@
 </p>
 
 ## Simple UI
-<img src="https://github.com/laravel/framework/workflows/tests/badge.svg">
 
 ## About Laravel
 
