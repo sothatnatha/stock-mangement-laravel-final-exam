@@ -8,7 +8,7 @@
 </p>
 
 ## Simple UI
-<img src="[https://github.com/laravel/framework/workflows/tests/badge.svg](https://firebasestorage.googleapis.com/v0/b/auth-39ce7.appspot.com/o/359684114_126243280513669_5676514067761159249_n.jpg?alt=media&token=85678aba-20c8-4027-bddf-1d17e21884f6](https://firebasestorage.googleapis.com/v0/b/auth-39ce7.appspot.com/o/359684114_126243280513669_5676514067761159249_n.jpg?alt=media&token=85678aba-20c8-4027-bddf-1d17e21884f6)" alt="Project UI">
+<img src="https://firebasestorage.googleapis.com/v0/b/auth-39ce7.appspot.com/o/359684114_126243280513669_5676514067761159249_n.jpg?alt=media&token=85678aba-20c8-4027-bddf-1d17e21884f6" alt="Project UI">
 
 ## About Laravel
 
